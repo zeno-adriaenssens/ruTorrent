@@ -1,8 +1,16 @@
 # ovpn-client-and-rutorrent-docker
 
+## Usage
 docker-compose.yml file for both an openvpn client and an rutorrent client with web interface.
 Change the file configuration till it fits your requirements, then run the containers with either:  
 docker-compose up     OR     docker-compose up -d  
+
+To test if everything works, you can always run:
+* curl ifconfig.me  
+* docker exec -it vpn curl ifconfig.me  
+* docker exec -it rutorrent curl ifconfig.me  
+
+If your public ip from "curl ifconfig.me" is different from the ones from your vpn and torrent then everything is working. 
 
 ## VPN
 The simple way of using the vpn is having an .ovpn file and putting it in the ./vpn volume. (so in the working directory, Ex. $PWD/vpn/example.ovpn) All ports that need to be local accessible need to be mapped on the vpn container, and not on the service that uses those ports. For other uses as to connect to a remote network using the ovpn-client, look at the documentation referenced below. But it comes down to using docker run ... -v 'server;user;password[;port]' to connect to a remote network.  
