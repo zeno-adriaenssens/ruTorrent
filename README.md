@@ -1,15 +1,17 @@
 # ovpn-client-and-rutorrent-docker
 
-docker-compose.yml file for both an openvpn client and an rutorrent client with web interface
+docker-compose.yml file for both an openvpn client and an rutorrent client with web interface.
+Change the file configuration till it fits your requirements, then run the containers with either:  
+docker-compose up     OR     docker-compose up -d  
 
 ## VPN
-The simple way of using the vpn is having an .ovpn file and putting it in the ./vpn volume. (so in the working directory, Ex. $PWD/vpn/example.ovpn) All ports that need to be local accessable need to be mapped on the vpn container, and not on the service that uses those ports. For other uses as to connect to a remote network using the ovpn-client, look at the documentation referenced below. But it comes down to using docker run ... -v 'server;user;password[;port]' to connect to a remote network.  
+The simple way of using the vpn is having an .ovpn file and putting it in the ./vpn volume. (so in the working directory, Ex. $PWD/vpn/example.ovpn) All ports that need to be local accessible need to be mapped on the vpn container, and not on the service that uses those ports. For other uses as to connect to a remote network using the ovpn-client, look at the documentation referenced below. But it comes down to using docker run ... -v 'server;user;password[;port]' to connect to a remote network.  
 
 #### Volumes
 * /vpn: ovpn file location
 
 ## Rutorrent
-The torrent client will send all trafic through the vpn, meaning that the vpn is the only container with access to the locale network. If the ports below are mapped on the vpn then they will be locally accessable, the port mapped on 8080 will then be the port used to connect to the torrent web interface. (Ex. mapping ports: - '9999:8080' on the vpn will allow you to use the web interface on http://localhost:9999)  
+The torrent client will send all traffic through the vpn, meaning that the vpn is the only container with access to the locale network. If the ports below are mapped on the vpn then they will be locally accessible, the port mapped on 8080 will then be the port used to connect to the torrent web interface. (Ex. mapping ports: - '9999:8080' on the vpn will allow you to use the web interface on http://localhost:9999)  
 All downloads will go to the /downloads folder on the torrent client so make sure to change the path in volumes if needed.
 
 #### Volumes
