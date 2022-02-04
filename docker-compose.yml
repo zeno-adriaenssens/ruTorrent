@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+    vpn:
+        devices:
+            - /dev/net/tun
+        container_name: vpn
+        cap_add:
+            - net_admin
+        restart: unless-stopped
+        security_opt:
+            - label:disable
+        volumes:
+            - './vpn:/vpn'
+        sysctls:
+            - net.ipv6.conf.all.disable_ipv6=0
+        tmpfs:
+            - /run
+            - /tmp
+        ports:
+            - '6881:6881/udp'
+            - '8001:8000'
+            - '9000:9000'
+            - '9080:8080'
+            - '50000:50000'
+        image: dperson/openvpn-client
+
+    rutorrent:
+        container_name: rutorrent
+        restart: unless-stopped
+        depends_on:
+         - vpn
+        network_mode: 'service:vpn'
+        environment:
+            - PUID=1000
+            - PGID=1000
+        ulimits:
+          nproc: 65535
+          nofile:
+            soft: 32000
+            hard: 40000
+        volumes:
+            - './rutorrent/downloads:/downloads'
+            - './rutorrent/data:/data'
+            - './rutorrent/passwd:/passwd'
+        stdin_open: true
+        tty: true
+        image: crazymax/rtorrent-rutorrent:3.10-0.9.8-0.13.8
