@@ -45,10 +45,10 @@ All downloads will go to the /downloads folder on the torrent client so make sur
 
 ## references
 #### dperson/openvpn-client:  
-https://hub.docker.com/r/dperson/openvpn-client  
-https://github.com/dperson/openvpn-client  
-https://github.com/dperson/openvpn-client/blob/master/docker-compose.yml  
+[Docker Hub](https://hub.docker.com/r/dperson/openvpn-client)  
+[Github](https://github.com/dperson/openvpn-client)  
+[Docker-compose.yml example](https://github.com/dperson/openvpn-client/blob/master/docker-compose.yml)  
 
 #### crazymax/rtorrent-rutorrent:  
-https://hub.docker.com/r/crazymax/rtorrent-rutorrent  
-https://github.com/crazy-max/docker-rtorrent-rutorrent  
+[Docker Hub](https://hub.docker.com/r/crazymax/rtorrent-rutorrent)  
+[Gitub](https://github.com/crazy-max/docker-rtorrent-rutorrent)  
