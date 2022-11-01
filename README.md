@@ -1,18 +1,36 @@
-# ovpn-client-and-rutorrent-docker
+# Description:
 
-## Usage
-docker-compose.yml file for both an openvpn client and an rutorrent client with web interface.
-Change the file configuration till it fits your requirements, then run the containers with either:  
-docker-compose up     OR     docker-compose up -d  
+This git repo uses docker compose to set up a torrent webserver that tunnels all its traffic through an OpenVPN client as a VPN service.  
+Which means that all thats required for configuration is a .ovpn file to connect to YOUR VPN server.  
 
-To test if everything works, you can always run:
-* curl ifconfig.me  
-* docker exec -it vpn curl ifconfig.me  
-* docker exec -it rutorrent curl ifconfig.me  
+# Requirements:
 
-If your public ip from "curl ifconfig.me" is different from the ones from your vpn and torrent then everything is working.  
-OR  
-you can check https://iknowwhatyoudownload.com/en/peer/ to see which ip has torrented what.
+* docker-compose
+* An .ovpn file for connecting to a remote VPN server.
+
+# Setup:
+
+Create the subfolder ./vpn and place your .ovpn file inside.  
+Now all thats left to do is run docker compose.  
+```docker-compose up -d```
+
+If everything went right you should still use the same public IP adress, but the vpn and rutorrent docker container should both use a different public ip.
+
+One way to check this is by running these commands: 
+* ```curl ifconfig.me```  
+(This shows your public ip adress, this should not change no matter if you run the docker-compose file.)
+* ```docker exec -it vpn curl ifconfig.me```
+(This shows the VPN service's public ip adress, this should be different from your public IP adress.)
+* ```docker exec -it rutorrent curl ifconfig.me```
+(This shows the VPN service's public ip adress, this should be the same as the VPN service if everything whent riht.)
+
+# Usage:
+
+Once your setup is done, you should be able to connect to the ruTorrent webserver at:  
+http://localhost:8080
+
+
+# Extra info
 
 ## VPN
 The simple way of using the vpn is having an .ovpn file and putting it in the ./vpn volume. (so in the working directory, Ex. $PWD/vpn/example.ovpn) All ports that need to be local accessible need to be mapped on the vpn container, and not on the service that uses those ports. For other uses as to connect to a remote network using the ovpn-client, look at the documentation referenced below. But it comes down to using docker run ... -v 'server;user;password[;port]' to connect to a remote network.  
