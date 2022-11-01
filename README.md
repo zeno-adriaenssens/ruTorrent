@@ -1,7 +1,6 @@
 # Description:
 
 This git repo uses docker compose to set up a torrent webserver that tunnels all its traffic through an OpenVPN client as a VPN service.  
-Which means that all thats required for configuration is a .ovpn file to connect to YOUR VPN server.  
 
 # Requirements:
 
