@@ -9,7 +9,9 @@ This git repo uses docker compose to set up a torrent webserver that tunnels all
 
 # Setup:
 
-Create the subfolder ./vpn and place your .ovpn file inside.  
+* Create the subfolder ./vpn 
+* place your .ovpn file inside. 
+
 Now all thats left to do is run docker compose.  
 ```docker-compose up -d```
 
