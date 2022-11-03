@@ -28,7 +28,7 @@ One way to check this is by running these commands:
 # Usage:
 
 Once your setup is done, you should be able to connect to the ruTorrent webserver at:  
-http://localhost:8080
+http://localhost:9080
 
 
 # Extra info
